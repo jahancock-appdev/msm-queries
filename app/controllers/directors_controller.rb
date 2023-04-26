@@ -12,4 +12,13 @@ class DirectorsController < ApplicationController
     
     render({ :template => "director_templates/eldest.html.erb"})
   end
+
+  def director_details
+
+    the_id = params.fetch("an_id").to_i
+
+    @the_director = Director.where({:id => 1}).first
+
+    render({ :template => "director_templates/show.html.erb"})
+  end
 end
