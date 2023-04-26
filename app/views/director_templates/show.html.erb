@@ -47,13 +47,48 @@
     Created at
   </dt>
   <dd>
-    over 7 years ago
+    <%= time_ago_in_words(@the_director.created_at) %> ago
   </dd>
 
   <dt>
     Updated at
   </dt>
   <dd>
-    over 7 years ago
+    <%= time_ago_in_words(@the_director.updated_at) %> ago
   </dd>
 </dl>
+
+<h2>Filmography</h2>
+<table border = "1">
+<% @filmography.each do |film| %>
+  <tr>
+    <td>
+      <%= film.id %>
+    </td>
+  
+    <td>
+      <img src="http://robohash.org/<%= film.image %>">
+    </td>
+  
+    <td>
+      <%= film.title %>
+    </td>
+  
+    <td>
+      <%= film.year %>
+    </td>
+ 
+    <td>  
+      <% d = Director.where({ :id => film.director_id}).at(0) %>
+      <%= d.name %>
+    </td>
+ 
+    <td>
+      <a href="/movies/<%= film.id %>">
+      Show details
+    </a>
+    </td>
+  </tr>
+<% end %>
+
+</table>
